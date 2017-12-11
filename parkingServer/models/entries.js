@@ -11,3 +11,9 @@ const Entry = sequelize.define('entries', {
 const sync = () => {
     Entry.sync({force:true});
 };
+
+
+module.exports = {
+    Entry,
+    sync
+};

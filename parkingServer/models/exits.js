@@ -1,6 +1,8 @@
 const {sequelize} = require('../db');
 const Sequelize = require('sequelize');
 
+//OLD MODEL, REPLACED WITH GATES
+
 const Exit = sequelize.define('exits', {
     name: {
         type: Sequelize.STRING,
