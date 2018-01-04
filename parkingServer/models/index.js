@@ -18,11 +18,17 @@ const createRelationships = () => {
     Entry.belongsTo(Gate);
 }
 
-const migrateDatabase = () => {
-    Object.keys(models).forEach((key) =>{
-        models[key].sync();
-    });
-};
+// const migrateDatabase = () => {
+//     Object.keys(models).forEach((key) =>{
+//         models[key].sync();
+//     });
+// };
+
+const migrateDatabase = () =>{
+    models.Location.sync();
+    models.Gate.sync();
+    setTimeout(()=>{models.Entry.sync()}, 2000);
+}
 
 const sequelizeModels  = () => {
     const sequelizeModels = {};

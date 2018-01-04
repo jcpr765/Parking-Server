@@ -9,9 +9,13 @@ var sassMiddleware = require('node-sass-middleware');
 const {testConnection} = require('./db');
 const {migrateDatabase} = require('./models');
 
-var index = require('./routes/index');
-const entrances = require('./routes/entrances');
+const index = require('./routes/index');
+const gates = require('./routes/gates');
+const locations = require('./routes/locations');
 var app = express();
+
+//For tesing purposes
+const moment = require('moment');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -31,8 +35,16 @@ app.use(sassMiddleware({
 }));
 app.use(express.static(path.join(__dirname, 'public')));
 
+//Added to allow CORS for communication with frontend app
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
 app.use('/', index);
-app.use('/entrances', entrances);
+app.use('/gates', gates);
+app.use('/locations', locations);
 
 testConnection();
 migrateDatabase();
