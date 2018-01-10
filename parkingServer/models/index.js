@@ -27,7 +27,7 @@ const createRelationships = () => {
 const migrateDatabase = () =>{
     models.Location.sync();
     models.Gate.sync();
-    setTimeout(()=>{models.Entry.sync()}, 2000);
+    setTimeout(()=>{models.Entry.sync()}, 3000);
 }
 
 const sequelizeModels  = () => {

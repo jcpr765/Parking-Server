@@ -11,9 +11,16 @@ const moment = MomentRange.extendMoment(Moment);
 
 router.get('/', function(req, res, next) {
     Location.findAll({
-        attributes: ['id', 'name']
+        attributes: ['id', 'name', 'capacity']
     }).then((locations)=>{
         res.send(locations);
+    });
+});
+
+router.get('/:locationId', (req, res, next) =>{
+    const locationId = parseInt(req.params.locationId);
+    Location.findById(locationId).then((location)=>{
+        res.send(location);
     });
 });
 
@@ -55,6 +62,20 @@ router.get('/week/:locationId', (req, res, next)=>{
                 }
 
                 res.send(weekStats);
+            });
+        });
+    });
+});
+
+router.post(':locationId/:gateId/', (req, res, next) => {
+    const locationId = parseInt(req.params.locationId);
+    const gateId = parseInt(req.params.gateId);
+    Location.findById(locationId).then((location)=>{
+        location.getGates({where:{
+            id: gateId
+        }}).then((gate)=>{
+            gate.createEntry({
+                quantity: 1
             });
         });
     });
