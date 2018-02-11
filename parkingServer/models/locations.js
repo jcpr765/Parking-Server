@@ -15,7 +15,12 @@ const sync = () => {
     Location.sync({force:true}).then(()=>{
         Location.create({
             name: 'UPR Bayamon',
-            capacity: 500
+            capacity: 500,
+        }).then(()=>{
+            Location.create({
+                name: 'Doña Fela Parking',
+                capacity: 300,
+            });
         });
     });
 };

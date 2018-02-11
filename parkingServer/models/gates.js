@@ -59,16 +59,42 @@ const sync = () => {
                                             name: "Library Employee Exit",
                                             type: "Exit",
                                             accessType: "Employee"
+                                        }).then(()=>{
+                                            Location.findById(2).then((loc2)=>{
+                                                loc2.createGate({
+                                                    name: "First Entrance",
+                                                    type: "Entrance",
+                                                    accessType: "General",
+                                                }).then(()=>{
+                                                    loc2.createGate({
+                                                        name: "Second Entrance",
+                                                        type: "Entrance",
+                                                        accessType: "General",
+                                                    }).then(()=>{
+                                                        loc2.createGate({
+                                                            name: "Main Exit",
+                                                            type: "Exit",
+                                                            accessType: "General",
+                                                        }).then(()=>{
+                                                            loc2.createGate({
+                                                                name: "Back Exit",
+                                                                type: "Exit",
+                                                                accessType: "General",
+                                                            });
+                                                        });
+                                                    });
+                                                });
+                                            });
                                         });
-                                    })
-                                })
-                            })
-                        })
+                                    });
+                                });
+                            });
+                        });
                     });
-                })
-            })  
-        })
-    })
+                });
+            });
+        });
+    });
 };
 
             module.exports = {

@@ -20,10 +20,15 @@ const sync = () => {
             gates.forEach((g)=>{
                 const entries = [];
                 let totalDays = 7;
+                let max;
+                if(g.type === "Entrance")
+                    max = 120;
+                else
+                    max = 50;
                 for(var i = 1; i <= totalDays; i++) {
                     entries.push(
                         g.createEntry({
-                            quantity: faker.random.number(100),
+                            quantity: faker.random.number(max),
                             createdAt: moment(new Date()).subtract(totalDays - i, 'days').endOf('day').format()
                         })
                     );
